@@ -37,7 +37,11 @@
 </template>
 
 <script>
+  import {CartStore} from '../../store/cart.js';
+
+  
   export default {
+
     data() {
       return {
         goods_info: [],
@@ -49,7 +53,7 @@
 		}, {
 			icon: 'cart',
 			text: '购物车',
-			info: 2
+			info: 0
 		}],
 	    buttonGroup: [{
 	      text: '加入购物车',
@@ -89,8 +93,40 @@
             url: '/pages/cart/cart'
           })
         }
+      },
+      buttonClick(e) {
+        if(e.content.text === '加入购物车') {
+          const goods = {
+             // { goods_id, goods_name, goods_price, goods_count, goods_small_logo, goods_state }
+             goods_id: this.goods_info.goods_id,
+             goods_name: this.goods_info.goods_name,
+             goods_price: this.goods_info.goods_price,
+             goods_count: 1,
+             goods_small_logo: this.goods_info.goods_small_logo,
+             goods_state: true
+             
+          }
+          CartStore().addToCart(goods)
+        }
+      },
+    },
+    computed: {
+      total() {
+        return CartStore().total
       }
     },
+    watch: {
+      total: {
+        handler(newVal) {
+          const findResult = this.options.find((x) => x.text === '购物车')
+          
+          if(findResult) {
+            findResult.info = newVal
+          }
+        },
+        immediate: true
+      }
+    }
   }
 </script>
 

@@ -50,13 +50,15 @@
     /* 快应用特有相关 */
     "mp-weixin" : {
         /* 小程序特有相关 */
+        "requiredPrivateInfos" : [ "chooseLocation", "getLocation" ,"chooseAddress" ],
         "appid" : "wx36c8062f67eaabad",
         "setting" : {
             "urlCheck" : false,
             "checkSiteMap" : false,
             "es6" : false
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "permission" : {}
     },
     "vueVersion" : "3"
 }

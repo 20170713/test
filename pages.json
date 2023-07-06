@@ -110,5 +110,8 @@
 		"app-plus": {
 			"background": "#efeff4"
 		}
-	}
+	},
+   "usingComponents": {
+     "my-goods": "/components/my-goods/my-goods"
+   }
 }
